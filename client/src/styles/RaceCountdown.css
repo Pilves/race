@@ -1,0 +1,279 @@
+/* RaceCountdown.css */
+:root {
+    --dark-bg: #111827;
+    --racing-yellow: #FFD60A;
+    --racing-green: #32D74B;
+    --racing-red: #FF3B30;
+    --text-primary: #FFFFFF;
+    --glow-primary: rgba(255, 214, 10, 0.3);
+}
+
+.countdown-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark-bg);
+    color: white;
+    overflow: hidden;
+}
+
+.countdown-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+            135deg,
+            rgba(0, 163, 255, 0.1) 0%,
+            transparent 50%,
+            rgba(255, 214, 10, 0.1) 100%
+    );
+    z-index: 1;
+}
+
+.countdown-display {
+    text-align: center;
+    padding: 3rem;
+    border-radius: 24px;
+    position: relative;
+    z-index: 2;
+    min-width: 600px;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.countdown-time {
+    font-family: 'Monaco', monospace;
+    font-size: 160px;
+    font-weight: 800;
+    color: var(--racing-yellow);
+    text-shadow: 0 0 30px rgba(255, 214, 10, 0.5),
+    4px 4px 0 rgba(0, 0, 0, 0.3);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    position: relative;
+    transform: translateZ(20px);
+    letter-spacing: 4px;
+}
+
+.countdown-time::before,
+.countdown-time::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 4px;
+    background: var(--racing-yellow);
+    transform: translateY(-50%);
+}
+
+.countdown-time::before {
+    left: -70px;
+}
+
+.countdown-time::after {
+    right: -70px;
+}
+
+.race-status {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    padding: 1rem 3rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    transform: translateZ(10px);
+}
+
+.status-waiting {
+    color: var(--text-primary);
+    text-shadow: 0 0 20px rgba(255, 214, 10, 0.5);
+}
+
+.status-active {
+    color: var(--text-primary);
+    text-shadow: 0 0 20px rgba(50, 215, 75, 0.5);
+    animation: pulseActive 2s infinite;
+}
+
+.status-finished {
+    color: var(--text-primary);
+    text-shadow: 0 0 20px rgba(255, 59, 48, 0.5);
+}
+
+/* Race Status Indicator */
+.race-status::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.status-waiting::before {
+    background-color: var(--racing-yellow);
+    box-shadow: 0 0 20px var(--racing-yellow);
+}
+
+.status-active::before {
+    background-color: var(--racing-green);
+    box-shadow: 0 0 20px var(--racing-green);
+    animation: pulseIndicator 2s infinite;
+}
+
+.status-finished::before {
+    background-color: var(--racing-red);
+    box-shadow: 0 0 20px var(--racing-red);
+}
+
+.no-race {
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 2;
+    min-width: 600px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.fullscreen-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    letter-spacing: 1px;
+}
+
+.fullscreen-button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.fullscreen .fullscreen-button {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.fullscreen:hover .fullscreen-button {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Animations */
+@keyframes pulseActive {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes pulseIndicator {
+    0%, 100% {
+        transform: translateY(-50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-50%) scale(1.5);
+        opacity: 0.5;
+    }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .countdown-display,
+    .no-race {
+        min-width: unset;
+        width: 90%;
+        padding: 2rem;
+    }
+
+    .countdown-time {
+        font-size: 80px;
+    }
+
+    .countdown-time::before,
+    .countdown-time::after {
+        width: 30px;
+    }
+
+    .countdown-time::before {
+        left: -40px;
+    }
+
+    .countdown-time::after {
+        right: -40px;
+    }
+
+    .race-status {
+        font-size: 1.8rem;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .no-race {
+        font-size: 2rem;
+    }
+}
+
+/* Background Animation */
+.countdown-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 255, 255, 0.03) 20px,
+            rgba(255, 255, 255, 0.03) 40px
+    );
+    animation: backgroundMove 30s linear infinite;
+    z-index: 0;
+}
+
+@keyframes backgroundMove {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 40px 40px;
+    }
+}

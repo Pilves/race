@@ -1,0 +1,306 @@
+:root {
+    --bg-primary: #111827;
+    --bg-secondary: rgba(17, 24, 39, 0.8);
+    --bg-tertiary: rgba(31, 41, 55, 0.8);
+    --text-primary: #FFFFFF;
+    --text-secondary: #9CA3AF;
+    --primary-color: #FFD60A;
+    --racing-green: #32D74B;
+    --racing-yellow: #FFD60A;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.2);
+    --glow-primary: 0 0 20px rgba(255, 214, 10, 0.3);
+    --glow-success: 0 0 20px rgba(50, 215, 75, 0.3);
+    --gradient-primary: linear-gradient(135deg, #FFD60A 0%, #FFA500 100%);
+    --gradient-race: linear-gradient(135deg, rgba(255, 214, 10, 0.1) 0%, rgba(255, 165, 0, 0.1) 100%);
+}
+
+/* Next Race Container */
+.next-race-container {
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vh;
+    padding: clamp(1rem, 2vw, 2rem);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    position: absolute;
+    overflow: hidden;
+}
+
+/* Dynamic Background */
+.next-race-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: linear-gradient(
+            135deg,
+            rgba(212, 163, 115, 0.1) 0%,
+            transparent 50%,
+            rgba(111, 191, 115, 0.1) 100%
+    );
+    filter: blur(60px);
+    pointer-events: none;
+}
+
+/* Main Content */
+.next-race-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: var(--bg-secondary);
+    border-radius: 24px;
+    box-shadow: var(--shadow-lg);
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    position: relative;
+    z-index: 1;
+}
+
+/* Header Section */
+.next-race-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.next-race-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: var(--primary-color);
+    box-shadow: var(--glow-primary);
+    animation: glow 2s infinite;
+}
+
+.next-race-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: var(--shadow-sm);
+}
+
+.race-time {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--racing-yellow);
+    font-weight: 600;
+    text-shadow: 0 0 20px rgba(242, 204, 93, 0.5);
+    animation: pulseFade 2s infinite;
+}
+
+/* Drivers Grid */
+.drivers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding: 1rem;
+}
+
+/* Driver Card */
+.driver-card {
+    background: var(--bg-tertiary);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.driver-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-race);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.driver-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.driver-card:hover::before {
+    opacity: 0.1;
+}
+
+/* Car Number Badge */
+.car-number-badge {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-primary);
+    color: var(--text-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: var(--glow-primary);
+}
+
+.car-number-badge::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    opacity: 0.5;
+    animation: pulseBorder 2s infinite;
+}
+
+/* Driver Info */
+.driver-info {
+    flex-grow: 1;
+}
+
+.driver-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+/* Proceed Message */
+.proceed-message {
+    text-align: center;
+    padding: 2rem;
+    background: var(--racing-green);
+    border-radius: 16px;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: attention 2s infinite;
+    box-shadow: var(--glow-success);
+}
+
+/* No Race Message */
+.no-race-message {
+    text-align: center;
+    padding: 4rem 2rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+}
+
+/* Fullscreen Button */
+.fullscreen-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem 2rem;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    border: 1px solid var(--border-color);
+}
+
+.fullscreen-button:hover {
+    background: var(--bg-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--glow-primary);
+}
+
+.fullscreen .fullscreen-button {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.fullscreen:hover .fullscreen-button {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Animations */
+@keyframes glow {
+    0%, 100% { box-shadow: var(--glow-primary); }
+    50% { box-shadow: none; }
+}
+
+@keyframes pulseBorder {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.2; }
+}
+
+@keyframes pulseFade {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes attention {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .next-race-container {
+        padding: 1rem;
+    }
+
+    .next-race-title {
+        font-size: 2rem;
+    }
+
+    .race-time {
+        font-size: 1.5rem;
+    }
+
+    .drivers-grid {
+        gap: 1rem;
+    }
+
+    .driver-card {
+        padding: 1rem;
+    }
+
+    .car-number-badge {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .driver-name {
+        font-size: 1.25rem;
+    }
+
+    .proceed-message {
+        font-size: 1.25rem;
+        padding: 1.5rem;
+    }
+}

@@ -1,0 +1,110 @@
+.race-flag-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.flag-display {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+}
+
+.flag-text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 120px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    color: white;
+    text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 10;
+}
+
+.checkered-flag {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+}
+
+.checkered-square {
+    width: 100%;
+    height: 100%;
+}
+
+.checkered-square:nth-child(odd) {
+    background-color: black;
+}
+
+.checkered-square:nth-child(even) {
+    background-color: white;
+}
+
+.solid-flag {
+    position: absolute;
+    inset: 0;
+    transition: background-color 0.5s ease;
+}
+
+.fullscreen-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.fullscreen .fullscreen-button {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.fullscreen:hover .fullscreen-button {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+@media (max-width: 768px) {
+    .flag-text {
+        font-size: 72px;
+        letter-spacing: 4px;
+    }
+
+    .checkered-flag {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+}

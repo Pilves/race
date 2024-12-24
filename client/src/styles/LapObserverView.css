@@ -1,0 +1,289 @@
+/* Lap Tracker Container */
+.lap-tracker-container {
+    min-height: 100vh;
+    padding: clamp(1rem, 2vw, 2rem);
+    background: var(--bg-primary);
+    background-image:
+            radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 100% 100%, rgba(34, 197, 94, 0.1) 0%, transparent 50%);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Header Section */
+.lap-tracker-header {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.lap-tracker-title {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 800;
+    text-align: center;
+    background: linear-gradient(135deg, var(--text-primary), var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.lap-tracker-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: var(--primary-color);
+    animation: glowLine 2s infinite;
+}
+
+/* Race Status Display */
+.race-status-display {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 12px;
+    background: var(--bg-secondary);
+    margin-top: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.status-message {
+    font-size: 1.25rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.status-message.active {
+    color: var(--racing-green);
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+.status-message.ended {
+    color: var(--racing-red);
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+/* Car Buttons Grid */
+.car-buttons-grid {
+    display: grid;
+    gap: clamp(0.5rem, 2vw, 1.5rem);
+    flex: 1;
+    padding: 1rem;
+    animation: fadeInGrid 0.5s ease-out;
+}
+
+/* Grid Layout Based on Orientation */
+.portrait .car-buttons-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.landscape .car-buttons-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Car Button Styling */
+.car-button {
+    position: relative;
+    min-height: 150px;
+    padding: 2rem 1rem;
+    border: none;
+    border-radius: 16px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+/* Button Hover Effect */
+.car-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            135deg,
+            transparent,
+            rgba(255, 255, 255, 0.05),
+            transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.car-button:hover:not(:disabled)::before {
+    opacity: 1;
+}
+
+.car-button:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+/* Active Button State */
+.car-button:not(:disabled) {
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.car-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--glow-primary);
+}
+
+/* Disabled Button State */
+.car-button:disabled {
+    background: var(--bg-tertiary);
+    opacity: 0.7;
+    cursor: not-allowed;
+    border: 1px solid var(--border-color);
+}
+
+.car-button.hidden {
+    display: none;
+}
+
+/* Car Number Display */
+.car-number {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Driver Name */
+.driver-name {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 500;
+    opacity: 0.9;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Lap Time Display */
+.last-lap-time {
+    font-family: 'Monaco', monospace;
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    opacity: 0.8;
+    margin-top: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* No Session Message */
+.no-session-message {
+    text-align: center;
+    padding: 4rem 2rem;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Animations */
+@keyframes glowLine {
+    0%, 100% { box-shadow: 0 0 10px var(--primary-color); }
+    50% { box-shadow: 0 0 20px var(--primary-color); }
+}
+
+@keyframes fadeInGrid {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.98); }
+    100% { transform: scale(1); }
+}
+
+/* Optimization for Touch Devices */
+@media (hover: none) {
+    .car-button {
+        padding: 2.5rem 1rem;
+    }
+
+    .car-button::before {
+        display: none;
+    }
+}
+
+/* Tablet Optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .car-button {
+        min-height: 180px;
+    }
+
+    .car-number {
+        font-size: 3.5rem;
+    }
+
+    .driver-name {
+        font-size: 1.5rem;
+    }
+}
+
+/* Large Screen Optimizations */
+@media (min-width: 1025px) {
+    .car-buttons-grid {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: more) {
+    .car-button {
+        border: 2px solid var(--text-primary);
+    }
+
+    .car-button:disabled {
+        border: 2px solid var(--text-secondary);
+    }
+
+    .status-message.active,
+    .status-message.ended {
+        text-shadow: none;
+        border: 1px solid currentColor;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .car-button:hover:not(:disabled) {
+        transform: none;
+    }
+
+    .lap-tracker-title::after {
+        animation: none;
+    }
+
+    .car-buttons-grid {
+        animation: none;
+    }
+}

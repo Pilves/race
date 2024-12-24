@@ -1,0 +1,39 @@
+### test
+
+GET localhost:8080/test
+
+
+### Environment variables
+@baseUrl = http://localhost:8080/api
+@carId = 1
+
+### Add new car
+POST {{baseUrl}}/cars
+Content-Type: application/json
+
+{
+  "carNumber": 123
+}
+
+### Get all cars
+GET {{baseUrl}}/cars
+
+### Get car by ID
+GET {{baseUrl}}/cars/{{carId}}
+
+### Get car by number
+GET {{baseUrl}}/cars/number/123
+
+### Get available cars for session
+GET {{baseUrl}}/cars/available/1
+
+### Update car
+PUT {{baseUrl}}/cars/{{carId}}
+Content-Type: application/json
+
+{
+  "carNumber": 456
+}
+
+### Delete car
+DELETE {{baseUrl}}/cars/{{carId}}

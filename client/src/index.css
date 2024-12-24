@@ -1,0 +1,142 @@
+/* Import component styles */
+@import './styles/FrontDesk.css';
+@import './styles/Leaderboard.css';
+@import './styles/LoginScreen.css';
+@import './styles/RaceControll.css';
+@import './styles/Shared.css';
+@import './styles/LapObserverView.css';
+@import './styles/RaceFlag.css';
+@import './styles/NextRace.css';
+@import './styles/RaceCountdown.css';
+@import './styles/Homepage.css';
+@import './styles/DateTime.css';
+
+
+:root {
+  /* Core Colors */
+  --bg-primary: #0e0f12;
+  --bg-secondary: #1a1b20;
+  --bg-tertiary: #26272e;
+
+  /* Text Colors */
+  --text-primary: #f4f5f7;
+  --text-secondary: #b0b3bd;
+  --text-muted: #8a8d96;
+
+  /* Brand Colors */
+  --primary-color: #d4a373;
+  --primary-dark: #b0855a;
+  --primary-light: #e7c8a3;
+
+  /* Racing Colors */
+  --racing-red: #e94560;
+  --racing-yellow: #f2cc5d;
+  --racing-green: #6fbf73;
+
+  /* UI Elements */
+  --border-color: rgba(255, 255, 255, 0.1);
+  --card-bg: #20232a;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  --gradient-race: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+
+  /* Glows */
+  --glow-primary: 0 0 20px rgba(212, 163, 115, 0.5);
+  --glow-success: 0 0 20px rgba(111, 191, 115, 0.5);
+  --glow-error: 0 0 20px rgba(233, 69, 96, 0.5);
+
+  /* Font */
+  --font-racing: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Base styles */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-racing), sans-serif;
+  line-height: 1.6;
+}
+
+/* Modern Card Style */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Modern Button Style */
+.button {
+  background: var(--gradient-primary);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-primary);
+}
+
+/* Input Fields */
+input, select, textarea {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: var(--glow-primary);
+}
+
+/* Status Colors */
+.status-success { color: var(--racing-green); }
+.status-warning { color: var(--racing-yellow); }
+.status-error { color: var(--racing-red); }
+
+/* Animation Keyframes */
+@keyframes glow {
+  0%, 100% { box-shadow: var(--glow-primary); }
+  50% { box-shadow: none; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Glass Morphism */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+/* Text Gradients */
+.gradient-text {
+  background: linear-gradient(135deg, var(--text-primary), var(--primary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

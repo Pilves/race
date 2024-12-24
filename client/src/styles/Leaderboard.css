@@ -1,0 +1,99 @@
+/* Leaderboard Container */
+.leaderboard-container {
+    min-height: 100vh;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    padding: clamp(1rem, 2vw, 2rem);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Header Styling */
+.leaderboard-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Table Styling */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: 1rem;
+    text-align: left;
+    width: 25%; /* Ensure that each column takes up equal space */
+}
+
+.leaderboard-table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.leaderboard-table td {
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Row Styling */
+.driver-row2 {
+    transition: background-color 0.3s ease;
+}
+
+
+.driver-row2:hover {
+    background: var(--bg-tertiary);
+}
+
+/* Lap Time Styling */
+.lap-time {
+    font-family: 'Monaco', monospace;
+    letter-spacing: 1px;
+}
+.flag-small-container {
+    position: relative;
+
+}
+.flag-small {
+    width: 150px;
+    height: 50px;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .leaderboard-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .leaderboard-table {
+        font-size: 0.9rem;
+    }
+
+    /* Adjust column widths on small screens */
+    .leaderboard-table th,
+    .leaderboard-table td {
+        width: 50%; /* Makes columns take up more space */
+    }
+}
